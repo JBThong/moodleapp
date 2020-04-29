@@ -1115,6 +1115,11 @@ export class CoreCourseModulePrefetchDelegate extends CoreDelegate {
             return Promise.resolve(false);
         }
 
+        if (!module.handlerData.showDownloadButton) {
+            // Module isn't enable for the user download, cannot be downloaded.
+            return Promise.resolve(false);
+        }
+
         const handler = this.getPrefetchHandlerFor(module);
 
         if (handler) {
@@ -1134,7 +1139,7 @@ export class CoreCourseModulePrefetchDelegate extends CoreDelegate {
                 }
             } else {
                 // Function not defined, assume it's not downloadable.
-                return Promise.resolve(true);
+                return Promise.resolve(false);
             }
         } else {
             // No handler for module, so it's not downloadable.
