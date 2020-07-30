@@ -566,6 +566,7 @@ export class CoreTabsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
             // Unselect previous selected tab.
             currentTab.unselectTab();
         }
+        this.selected = index;
 
         if (this.selected) {
             this.slides.slideTo(index);
@@ -573,7 +574,6 @@ export class CoreTabsComponent implements OnInit, AfterViewInit, OnChanges, OnDe
         }
 
         this.selectHistory.push(index);
-        this.selected = index;
         newTab.selectTab();
         this.ionChange.emit(newTab);
     }
